@@ -1,0 +1,46 @@
+package com.example.paciente_service.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.UUID;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Consulta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID consultaId;
+
+    @ManyToOne(
+            optional = false,
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name = "pacienteId", nullable = false)
+    private Paciente paciente;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(nullable = false)
+    private LocalDate dataConsulta;
+
+    @DateTimeFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm")
+    @Column(nullable = false)
+    private LocalTime horaConsulta;
+
+    @Column(nullable = false)
+    private String descricao;
+
+}
