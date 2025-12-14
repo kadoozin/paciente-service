@@ -1,16 +1,12 @@
 package com.example.paciente_service.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -18,24 +14,16 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Consulta {
-
+public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @Column(nullable = false)
-    private LocalDate dataConsulta;
-
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
-    @Column(nullable = false)
-    private LocalTime horaConsulta;
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
-    private String descricao;
+    private String telefone;
 
     @JsonIgnore
     @ManyToOne(
@@ -43,7 +31,7 @@ public class Consulta {
             fetch = FetchType.LAZY
     )
     @JoinColumn(
-            name = "paciente_id ",
+            name = "paciente_id",
             nullable = false
     )
     private Paciente paciente;

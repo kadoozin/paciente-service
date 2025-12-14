@@ -1,6 +1,7 @@
 package com.example.paciente_service.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class Paciente {
     @Column(nullable = false, unique = true)
     private String rg;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = "paciente",
             cascade = CascadeType.ALL,
@@ -43,4 +45,13 @@ public class Paciente {
             fetch = FetchType.LAZY
     )
     private List<Consulta> consultas;
+
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "paciente",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Contato> contatos;
 }
