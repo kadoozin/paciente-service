@@ -1,4 +1,4 @@
-package com.example.paciente_service.model;
+package com.example.paciente_service.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
