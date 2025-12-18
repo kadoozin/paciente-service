@@ -26,8 +26,6 @@ public class Paciente {
     @Column(nullable = false)
     private String nomeCompleto;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
     private LocalDate dataNascimento;
 

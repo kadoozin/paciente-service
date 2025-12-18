@@ -24,13 +24,9 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
     private LocalDate dataConsulta;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
     @Column(nullable = false)
     private LocalTime horaConsulta;
 
@@ -43,7 +39,7 @@ public class Consulta {
             fetch = FetchType.LAZY
     )
     @JoinColumn(
-            name = "paciente_id ",
+            name = "paciente_id",
             nullable = false
     )
     private Paciente paciente;
