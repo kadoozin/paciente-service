@@ -1,4 +1,4 @@
-package com.example.paciente_service.domain.repository;
+package com.example.paciente_service.repository;
 
 import com.example.paciente_service.domain.model.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
